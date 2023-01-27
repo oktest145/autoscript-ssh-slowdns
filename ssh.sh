@@ -7,7 +7,7 @@
 
 # initializing var
 export DEBIAN_FRONTEND=noninteractive
-MYIP=$(wget -qO- ifconfig.me/ip);
+MYIP=$(wget --no-check-certificate -qO- ifconfig.me/ip);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
@@ -23,7 +23,7 @@ commonname=hidessh.com
 email=admin@hidessh.com
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://gitlab.com/hidessh/baru/-/raw/main/password"
+wget --no-check-certificate --no-check-certificate -O /etc/pam.d/common-password "https://gitlab.com/hidessh/baru/-/raw/main/password"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -69,8 +69,8 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 apt-get remove --purge ufw firewalld -y
 apt-get remove --purge exim4 -y
 
-# install wget and curl
-apt -y install wget curl
+# install wget --no-check-certificate and curl
+apt -y install wget --no-check-certificate curl
 apt -y install python
 
 # install python
@@ -83,7 +83,7 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 
 # install
-apt-get -y bzip2 gzip wget screen htop net-tools zip unzip wget curl nano sed screen
+apt-get -y bzip2 gzip wget --no-check-certificate screen htop net-tools zip unzip wget --no-check-certificate curl nano sed screen
 
 # Install Requirements Tools
 apt install python -y
@@ -108,18 +108,18 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://gitlab.com/hidessh/baru/-/raw/main/nginx.conf"
+wget --no-check-certificate --no-check-certificate -O /etc/nginx/nginx.conf "https://gitlab.com/hidessh/baru/-/raw/main/nginx.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://gitlab.com/hidessh/baru/-/raw/main/vps.conf"
+wget --no-check-certificate --no-check-certificate -O /etc/nginx/conf.d/vps.conf "https://gitlab.com/hidessh/baru/-/raw/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://gitlab.com/hidessh/baru/-/raw/main/badvpn-udpgw64"
+wget --no-check-certificate --no-check-certificate -O /usr/bin/badvpn-udpgw "https://gitlab.com/hidessh/baru/-/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 
 #installer badvpn
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/badvpn/installer-badvpn.sh && chmod +x installer-badvpn.sh && ./installer-badvpn.sh
+wget --no-check-certificate --no-check-certificate https://raw.githubusercontent.com/hidessh99/projectku/main/badvpn/installer-badvpn.sh && chmod +x installer-badvpn.sh && ./installer-badvpn.sh
 
 
 # setting port ssh
@@ -142,12 +142,12 @@ echo "/usr/sbin/nologin" >> /etc/shells
 # install stunnel
 apt install stunnel4 -y
 #certi stunnel
-#wget -O /etc/stunnel/hidessh.pem https://gitlab.com/hidessh/baru/-/raw/main/certi/stunel && chmod +x /etc/stunnel/hidessh.pem
+#wget --no-check-certificate --no-check-certificate -O /etc/stunnel/hidessh.pem https://gitlab.com/hidessh/baru/-/raw/main/certi/stunel && chmod +x /etc/stunnel/hidessh.pem
 #installer SSL Cloudflare 
 cd
 
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.crt
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.key
+wget --no-check-certificate --no-check-certificate https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.crt
+wget --no-check-certificate --no-check-certificate https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.key
 #buat directory
 mkdir /etc/hidessh
 chmod +x /etc/hidessh
@@ -199,19 +199,19 @@ cd
 apt-get install sslh -y
 #konfigurasi
 #port 333 to 44 and 777
-wget -O /etc/default/sslh "https://gitlab.com/hidessh/baru/-/raw/main/SSLH/sslh.conf"
+wget --no-check-certificate --no-check-certificate -O /etc/default/sslh "https://gitlab.com/hidessh/baru/-/raw/main/SSLH/sslh.conf"
 service sslh restart
 
 
 # install squid
 #cd
 apt -y install squid3
-wget -O /etc/squid/squid.conf "https://gitlab.com/hidessh/baru/-/raw/main/squid.conf"
+wget --no-check-certificate --no-check-certificate -O /etc/squid/squid.conf "https://gitlab.com/hidessh/baru/-/raw/main/squid.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 /etc/init.d/squid restart
 
 #install badvpncdn
-wget https://github.com/ambrop72/badvpn/archive/master.zip
+wget --no-check-certificate --no-check-certificate https://github.com/ambrop72/badvpn/archive/master.zip
 unzip master.zip
 cd badvpn-master
 mkdir build
@@ -234,13 +234,13 @@ fi
 clear
 echo; echo 'Installing DOS-Deflate 0.6'; echo
 echo; echo -n 'Downloading source files...'
-wget -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
+wget --no-check-certificate --no-check-certificate -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
 echo -n '.'
-wget -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
+wget --no-check-certificate --no-check-certificate -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
 echo -n '.'
-wget -q -O /usr/local/ddos/ignore.ip.list http://www.inetbase.com/scripts/ddos/ignore.ip.list
+wget --no-check-certificate --no-check-certificate -q -O /usr/local/ddos/ignore.ip.list http://www.inetbase.com/scripts/ddos/ignore.ip.list
 echo -n '.'
-wget -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
+wget --no-check-certificate --no-check-certificate -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
 chmod 0755 /usr/local/ddos/ddos.sh
 cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
 echo '...done'
@@ -253,7 +253,7 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # blockir torrent
 apt install iptables-persistent -y
-#wget https://raw.githubusercontent.com/4hidessh/hidessh/main/security/torrent && chmod +x torrent && ./torrent
+#wget --no-check-certificate --no-check-certificate https://raw.githubusercontent.com/4hidessh/hidessh/main/security/torrent && chmod +x torrent && ./torrent
 #iptables-save > /etc/iptables.up.rules
 #iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
@@ -262,7 +262,7 @@ netfilter-persistent reload
 cd
 # Custom Banner SSH
 echo "================  Banner ======================"
-wget -O /etc/issue.net "https://gitlab.com/hidessh/baru/-/raw/main/banner.conf"
+wget --no-check-certificate --no-check-certificate -O /etc/issue.net "https://gitlab.com/hidessh/baru/-/raw/main/banner.conf"
 chmod +x /etc/issue.net
 
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
@@ -270,29 +270,29 @@ echo "DROPBEAR_BANNER="/etc/issue.net"" >> /etc/default/dropbear
 
 # download script
 cd /usr/bin
-wget -O about "https://gitlab.com/hidessh/baru/-/raw/main/about.sh"
-wget -O menu "https://gitlab.com/hidessh/baru/-/raw/main/menu.sh"
-wget -O usernew "https://gitlab.com/hidessh/baru/-/raw/main/usernew.sh"
-wget -O trial "https://gitlab.com/hidessh/baru/-/raw/main/trial.sh"
-wget -O hapus "https://gitlab.com/hidessh/baru/-/raw/main/hapus.sh"
-wget -O member "https://gitlab.com/hidessh/baru/-/raw/main/member.sh"
-wget -O delete "https://gitlab.com/hidessh/baru/-/raw/main/delete.sh"
-wget -O cek "https://gitlab.com/hidessh/baru/-/raw/main/cek.sh"
-wget -O restart "https://gitlab.com/hidessh/baru/-/raw/main/restart.sh"
-wget -O speedtest "https://gitlab.com/hidessh/baru/-/raw/main/speedtest_cli.py"
-wget -O info "https://gitlab.com/hidessh/baru/-/raw/main/info.sh"
-wget -O ram "https://gitlab.com/hidessh/baru/-/raw/main/ram.sh"
-wget -O renew "https://gitlab.com/hidessh/baru/-/raw/main/renew.sh"
-wget -O autokill "https://gitlab.com/hidessh/baru/-/raw/main/autokill.sh"
-wget -O ceklim "https://gitlab.com/hidessh/baru/-/raw/main/ceklim.sh"
-wget -O tendang "https://gitlab.com/hidessh/baru/-/raw/main/tendang.sh"
-wget -O clear-log "https://gitlab.com/hidessh/baru/-/raw/main/clear-log.sh"
-wget -O user-limit "https://gitlab.com/hidessh/baru/-/raw/main/user-limit.sh"
+wget --no-check-certificate --no-check-certificate -O about "https://gitlab.com/hidessh/baru/-/raw/main/about.sh"
+wget --no-check-certificate --no-check-certificate -O menu "https://gitlab.com/hidessh/baru/-/raw/main/menu.sh"
+wget --no-check-certificate --no-check-certificate -O usernew "https://gitlab.com/hidessh/baru/-/raw/main/usernew.sh"
+wget --no-check-certificate --no-check-certificate -O trial "https://gitlab.com/hidessh/baru/-/raw/main/trial.sh"
+wget --no-check-certificate --no-check-certificate -O hapus "https://gitlab.com/hidessh/baru/-/raw/main/hapus.sh"
+wget --no-check-certificate --no-check-certificate -O member "https://gitlab.com/hidessh/baru/-/raw/main/member.sh"
+wget --no-check-certificate --no-check-certificate -O delete "https://gitlab.com/hidessh/baru/-/raw/main/delete.sh"
+wget --no-check-certificate --no-check-certificate -O cek "https://gitlab.com/hidessh/baru/-/raw/main/cek.sh"
+wget --no-check-certificate -O restart "https://gitlab.com/hidessh/baru/-/raw/main/restart.sh"
+wget --no-check-certificate -O speedtest "https://gitlab.com/hidessh/baru/-/raw/main/speedtest_cli.py"
+wget --no-check-certificate -O info "https://gitlab.com/hidessh/baru/-/raw/main/info.sh"
+wget --no-check-certificate -O ram "https://gitlab.com/hidessh/baru/-/raw/main/ram.sh"
+wget --no-check-certificate -O renew "https://gitlab.com/hidessh/baru/-/raw/main/renew.sh"
+wget --no-check-certificate -O autokill "https://gitlab.com/hidessh/baru/-/raw/main/autokill.sh"
+wget --no-check-certificate -O ceklim "https://gitlab.com/hidessh/baru/-/raw/main/ceklim.sh"
+wget --no-check-certificate -O tendang "https://gitlab.com/hidessh/baru/-/raw/main/tendang.sh"
+wget --no-check-certificate -O clear-log "https://gitlab.com/hidessh/baru/-/raw/main/clear-log.sh"
+wget --no-check-certificate -O user-limit "https://gitlab.com/hidessh/baru/-/raw/main/user-limit.sh"
 
 #tambahan baru
-wget -O userdelexpired "https://gitlab.com/hidessh/baru/-/raw/main/userdelexpired.sh"
-wget -O autoreboot "https://gitlab.com/hidessh/baru/-/raw/main/autoreboot.sh"
-wget -O autoservice "https://gitlab.com/hidessh/baru/-/raw/main/autoservice.sh"
+wget --no-check-certificate -O userdelexpired "https://gitlab.com/hidessh/baru/-/raw/main/userdelexpired.sh"
+wget --no-check-certificate -O autoreboot "https://gitlab.com/hidessh/baru/-/raw/main/autoreboot.sh"
+wget --no-check-certificate -O autoservice "https://gitlab.com/hidessh/baru/-/raw/main/autoservice.sh"
 
 
 #permission
@@ -358,12 +358,12 @@ apt autoremove -y
 
 
 #instalasi Websocket
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/websocket/hideinstall-websocket.sh && chmod +x hideinstall-websocket.sh && ./hideinstall-websocket.sh
+wget --no-check-certificate https://raw.githubusercontent.com/hidessh99/projectku/main/websocket/hideinstall-websocket.sh && chmod +x hideinstall-websocket.sh && ./hideinstall-websocket.sh
 
 # finihsing
 clear
 #installer OPH
-wget https://gitlab.com/hidessh/baru/-/raw/main/ohp.sh && chmod +x ohp.sh && ./ohp.sh
+wget --no-check-certificate https://gitlab.com/hidessh/baru/-/raw/main/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 
 #remove file 
 cd
